@@ -19,4 +19,4 @@ Aplikácia sa spúšťa z jej adresára príkazom:
 
 	node app.js
 
-Po spustení aplikácie sa v konzole vypíše adresa a port na ktorom aplikácia beží. Štandartne je to adresa localhost a port 3000.
+Po spustení aplikácie sa v konzole vypíše adresa a port na ktorom aplikácia beží. Štandardne je to adresa localhost a port 3000.
