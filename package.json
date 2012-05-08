@@ -1,0 +1,11 @@
+{
+	"name": "node-websocket-demo",
+	"description": "Ukážková real-time webová aplikácia pre bakalársku prácu s témou Real-time webové aplikácie znázorňujúca vytvorenie Node.js WebSocket servera v súlade s RFC 6455 bez použitia knižnice.",
+	"version": "0.0.1",
+	"author": "Matej Paulech <matej.paulech@gmail.com>",
+	"private": true,
+	"main": "app",
+	"engine": {
+    "node": ">= 0.6.x"
+  }
+}

@@ -1,0 +1,71 @@
+<!--
+	Node.js Websocket-Server Demo
+	
+	Ukážková real-time webová aplikácia pre bakalársku prácu s témou Real-time webové aplikácie.
+	
+	Aplikácia znázorňuje vytvorenie Node.js WebSocket servera v súlade s RFC 6455 bez použitia knižnice.
+	
+	Jedná sa o veľmi zjednodušenú ukážku, znázorňujúcu odchytenie upgrade eventu v Node.js,
+	priebeh handshakingu klienta so serverom, prijatie dát od klienta a odoslanie dát klientovi.
+	
+	Pozn. Dĺžka odosielaných dát zo serveru je obmedzená na 125 znakov.
+	
+	Aplikácia bola testovaná iba v prehliadači Chrome 18, v ostatných verziách a prehliadačoch 
+	nemusí fungovať korektne alebo vôbec!
+	
+	@author Matej Paulech <matej.paulech@gmail.com>
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title>Node.js Websocket-Server Demo</title>
+
+		<script type="text/javascript">
+			/**
+			 * Funkcia pre pridanie správy na stránku.
+			 * @param {string} msg Text správy, ktorá bude pridaná na stránku
+			 */
+			var append = function (msg) {
+				var p = document.createElement('p');
+				p.innerText = msg;
+				document.body.appendChild(p);
+			};
+
+			/** Akcia vyvolaná po načítaní stránky */
+			window.onload = function () {
+				// Vytvorenie WebSocket objektu a pripojenie sa ku serveru
+				var ws = new WebSocket('ws://localhost:3000/');
+
+				/** Akcia vyvolaná po úspešnom nadviazaní spojenia s WebSocket serverom. */
+				ws.onopen = function () {
+					append('Spojenie so servrom bolo úspešne nadviazané.');
+
+					// Poslanie správy na server
+					append('Na server bola odoslaná správa "Hello world!"');
+					ws.send('Hello world!');
+				}
+
+				/** Akcia vyvolaná po príchode správý zo serveru. */
+				ws.onmessage = function (msg) {
+					append('Zo serveru bola prijatá správa: "' + msg.data + '"');
+				}
+
+				/** Akcia vyvolaná pri výskyte chyby spojenia. */
+				ws.onerror = function (e) {
+					append('Došlo k chybe: ', e);
+				}
+
+				/** Akcia vyvolaná po uzavretí spojenia so serverom. */
+				ws.onclose = function () {
+					append('Spojenie so serverom bolo uzavreté.');
+				}
+			};
+		</script>
+	</head>
+	
+	<body>
+		<h1>Websocket</h1>
+	</body>
+</html>
