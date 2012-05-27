@@ -69,7 +69,7 @@ server.on('upgrade', function (req, socket, head) {
 			'Sec-WebSocket-Accept: ' + result_key + '\r\n\r\n' 
 		);
 
-		// Ondata listener vyvolaný pri príchode dát zo serveru
+		// Ondata listener vyvolaný pri príchode dát z klienta
 		socket.ondata = function(src, start, end) {
 			// Odmaskuje prijaté dáta do čitatelného textového reťazca (source: http://stackoverflow.com/a/8559351)
 			src = src.slice(start,end);
